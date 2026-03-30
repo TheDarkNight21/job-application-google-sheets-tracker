@@ -2,6 +2,7 @@
 
 import json
 import os
+import re
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -61,10 +62,19 @@ def parse_emails(emails: list[Email]) -> list[Application]:
                 model="claude-haiku-4-5-20251001",
                 max_tokens=256,
                 system=SYSTEM_PROMPT,
-                messages=[{"role": "user", "content": user_message}],
+                messages=[
+                    {"role": "user", "content": user_message},
+                    {"role": "assistant", "content": "{"},
+                ],
             )
 
-            result_text = response.content[0].text.strip()
+            result_text = "{" + response.content[0].text.strip()
+
+            # Strip markdown code fences if present (e.g., ```json ... ```)
+            fence_match = re.search(r"```(?:json)?\s*(.*?)\s*```", result_text, re.DOTALL)
+            if fence_match:
+                result_text = fence_match.group(1)
+
             result = json.loads(result_text)
 
             if result.get("is_application"):
