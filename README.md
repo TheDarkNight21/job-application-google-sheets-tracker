@@ -69,7 +69,7 @@ This opens a browser for authorization. After granting access, it prints three v
 4. The script will auto-create headers on first run, but you can also set them manually:
 
 | Date Applied | Company | Position | Status | Email Subject | Source Email Date | Message ID |
-|---|---|---|---|---|---|---|
+| ------------ | ------- | -------- | ------ | ------------- | ----------------- | ---------- |
 
 ### 6. Get an Anthropic API key
 
@@ -80,14 +80,14 @@ This opens a browser for authorization. After granting access, it prints three v
 
 Go to your fork → **Settings → Secrets and variables → Actions** and add:
 
-| Secret | Value |
-|---|---|
-| `GMAIL_CLIENT_ID` | From step 3 |
-| `GMAIL_CLIENT_SECRET` | From step 3 |
-| `GMAIL_REFRESH_TOKEN` | From step 3 |
+| Secret                        | Value                                           |
+| ----------------------------- | ----------------------------------------------- |
+| `GMAIL_CLIENT_ID`           | From step 3                                     |
+| `GMAIL_CLIENT_SECRET`       | From step 3                                     |
+| `GMAIL_REFRESH_TOKEN`       | From step 3                                     |
 | `GOOGLE_SHEETS_CREDENTIALS` | Base64-encoded service account JSON from step 4 |
-| `GOOGLE_SHEET_ID` | From step 5 |
-| `ANTHROPIC_API_KEY` | From step 6 |
+| `GOOGLE_SHEET_ID`           | From step 5                                     |
+| `ANTHROPIC_API_KEY`         | From step 6                                     |
 
 ### 8. Enable the workflow
 
@@ -122,16 +122,19 @@ python -m src.main --hours 72
 ### Google Sheet layout
 
 **Columns A–G** (application data):
+
 | Date Applied | Company | Position | Status | Email Subject | Source Email Date | Message ID |
-|---|---|---|---|---|---|---|
+| ------------ | ------- | -------- | ------ | ------------- | ----------------- | ---------- |
 
 **Columns I–J** (auto-updated stats):
+
 - Total applications
 - This week / this month
 - Status breakdown (Applied, Interview, Rejected, Offer, etc.)
 - Top companies applied to
 
 **Status column** — manually update to track progress:
+
 - `Applied` (default)
 - `Interview`
 - `Offer`
@@ -155,7 +158,7 @@ src/
 └── sheets_client.py   # Google Sheets API — reads/writes/deduplicates
 ```
 
-## Cost
+## Cost hello
 
 - **GitHub Actions**: Free for public repos, 2000 min/month for private repos
 - **Gmail API**: Free
