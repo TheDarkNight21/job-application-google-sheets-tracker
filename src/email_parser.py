@@ -82,7 +82,7 @@ def parse_emails(emails: list[Email]) -> list[Application]:
                     Application(
                         company=result.get("company", "Unknown"),
                         position=result.get("position", "Unknown"),
-                        date_applied=email.date.strftime("%Y-%m-%d"),
+                        date_applied=email.date.strftime("%-m/%d/%Y"),
                         email_subject=email.subject,
                         source_email_date=email.date.isoformat(),
                         message_id=email.message_id,
